@@ -30,16 +30,16 @@ $core_path   	= get_template_directory() . '/core/';
  */
 require_once $core_path . 'helpers.php';
 require_once $core_path . 'classes/class-bootstrap-nav.php';
-require_once $core_path . 'classes/class-shortcodes.php';
+// require_once $core_path . 'classes/class-shortcodes.php';
 require_once $core_path . 'classes/class-thumbnail-resizer.php';
 require_once $core_path . 'classes/class-theme-options.php';
 require_once $core_path . 'classes/class-options-helper.php';
-require_once $core_path . 'classes/class-post-type.php';
-require_once $core_path . 'classes/class-taxonomy.php';
+// require_once $core_path . 'classes/class-post-type.php';
+// require_once $core_path . 'classes/class-taxonomy.php';
 require_once $core_path . 'classes/class-metabox.php';
-require_once $core_path . 'classes/abstracts/abstract-front-end-form.php';
-require_once $core_path . 'classes/class-contact-form.php';
-require_once $core_path . 'classes/class-post-form.php';
+// require_once $core_path . 'classes/abstracts/abstract-front-end-form.php';
+// require_once $core_path . 'classes/class-contact-form.php';
+// require_once $core_path . 'classes/class-post-form.php';
 require_once $core_path . 'classes/class-user-meta.php';
 
 /**
