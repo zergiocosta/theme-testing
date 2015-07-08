@@ -1,0 +1,34 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+
+  Web Designer: 
+  Site: 
+  Agency: 
+  Agency Site: 
+  Twitter: 
+  Location: 
+
+  Front-End: Sergio Costa
+  Site: http://sergiocosta.net.br
+  Agency Site: http://www.equilibradigital.com
+  Twitter: @__sergius
+  Location: Salvador, Bahia, Brazil
+
+  Back-End: Sergio Costa
+  Site: http://sergiocosta.net.br
+  Agency Site: http://www.equilibradigital.com
+  Twitter: @__sergius
+  Location: Salvador, Bahia, Brazil
+
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery, GruntJS, BxSlider
+  Frameworks: Bootstrap
+  Preprocessors: Sass (with Compass)
+  Software: FireWorks CS6, Sublime Text 2, NodeJS Command Prompt, GitBash
+  Content Management System: WordPress
+  Version Control: Git
