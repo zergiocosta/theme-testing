@@ -9,38 +9,38 @@
  * @author   WPBrasil
  * @version  2.1.4
  */
-class Odin_Shortcodes {
+class Republitheme_Shortcodes {
 
 	/**
 	 * Construct Post Type.
 	 */
 	public function __construct() {
-		add_shortcode( 'button', array( $this, 'button' ) );
-		add_shortcode( 'button_group', array( $this, 'button_group' ) );
-		add_shortcode( 'alert', array( $this, 'alert' ) );
-		add_shortcode( 'label', array( $this, 'label' ) );
-		add_shortcode( 'badge', array( $this, 'badge' ) );
-		add_shortcode( 'icon', array( $this, 'icon' ) );
-		add_shortcode( 'well', array( $this, 'well' ) );
-		add_shortcode( 'table', array( $this, 'table' ) );
-		add_shortcode( 'row', array( $this, 'row' ) );
-		add_shortcode( 'col', array( $this, 'col' ) );
-		add_shortcode( 'progress', array( $this, 'progress' ) );
-		add_shortcode( 'panel', array( $this, 'panel' ) );
-		add_shortcode( 'panel_heading', array( $this, 'panel_heading' ) );
-		add_shortcode( 'panel_body', array( $this, 'panel_body' ) );
-		add_shortcode( 'panel_footer', array( $this, 'panel_footer' ) );
-		add_shortcode( 'tabs', array( $this, 'tabs' ) );
-		add_shortcode( 'tab', array( $this, 'tab' ) );
-		add_shortcode( 'tab_dropdown', array( $this, 'tab_dropdown' ) );
-		add_shortcode( 'tab_contents', array( $this, 'tab_contents' ) );
-		add_shortcode( 'tab_content', array( $this, 'tab_content' ) );
-		add_shortcode( 'accordions', array( $this, 'accordions' ) );
-		add_shortcode( 'accordion', array( $this, 'accordion' ) );
-		add_shortcode( 'map', array( $this, 'map' ) );
-		add_shortcode( 'tooltip', array( $this, 'tooltip' ) );
-		add_shortcode( 'qrcode', array( $this, 'qrcode' ) );
-		add_shortcode( 'clear', array( $this, 'clear' ) );
+		add_shortcode( 'button', array( $this, 'republitheme_button' ) );
+		add_shortcode( 'button_group', array( $this, 'republitheme_button_group' ) );
+		add_shortcode( 'alert', array( $this, 'republitheme_alert' ) );
+		add_shortcode( 'label', array( $this, 'republitheme_label' ) );
+		add_shortcode( 'badge', array( $this, 'republitheme_badge' ) );
+		add_shortcode( 'icon', array( $this, 'republitheme_icon' ) );
+		add_shortcode( 'well', array( $this, 'republitheme_well' ) );
+		add_shortcode( 'table', array( $this, 'republitheme_table' ) );
+		add_shortcode( 'row', array( $this, 'republitheme_row' ) );
+		add_shortcode( 'col', array( $this, 'republitheme_col' ) );
+		add_shortcode( 'progress', array( $this, 'republitheme_progress' ) );
+		add_shortcode( 'panel', array( $this, 'republitheme_panel' ) );
+		add_shortcode( 'panel_heading', array( $this, 'republitheme_panel_heading' ) );
+		add_shortcode( 'panel_body', array( $this, 'republitheme_panel_body' ) );
+		add_shortcode( 'panel_footer', array( $this, 'republitheme_panel_footer' ) );
+		add_shortcode( 'tabs', array( $this, 'republitheme_tabs' ) );
+		add_shortcode( 'tab', array( $this, 'republitheme_tab' ) );
+		add_shortcode( 'tab_dropdown', array( $this, 'republitheme_tab_dropdown' ) );
+		add_shortcode( 'tab_contents', array( $this, 'republitheme_tab_contents' ) );
+		add_shortcode( 'tab_content', array( $this, 'republitheme_tab_content' ) );
+		add_shortcode( 'accordions', array( $this, 'republitheme_accordions' ) );
+		add_shortcode( 'accordion', array( $this, 'republitheme_accordion' ) );
+		add_shortcode( 'map', array( $this, 'republitheme_map' ) );
+		add_shortcode( 'tooltip', array( $this, 'republitheme_tooltip' ) );
+		add_shortcode( 'qrcode', array( $this, 'republitheme_qrcode' ) );
+		add_shortcode( 'clear', array( $this, 'republitheme_clear' ) );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Button HTML.
 	 */
-	function button( $atts, $content = null ) {
+	function republitheme_button( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'      => 'default',
 			'size'      => false,
@@ -83,7 +83,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Button Group HTML.
 	 */
-	function button_group( $atts, $content = null ) {
+	function republitheme_button_group( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'  => 'group',
 			'size'  => false,
@@ -108,7 +108,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Alert HTML.
 	 */
-	function alert( $atts, $content = null ) {
+	function republitheme_alert( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'  => 'info',
 			'close' => false
@@ -130,7 +130,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Label HTML.
 	 */
-	function label( $atts, $content = null ) {
+	function republitheme_label( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type' => 'default'
 		), $atts ) );
@@ -146,7 +146,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Badge HTML.
 	 */
-	function badge( $atts, $content = null ) {
+	function republitheme_badge( $atts, $content = null ) {
 		return '<span class="badge">' . do_shortcode( $content ) . '</span>';
 	}
 
@@ -157,7 +157,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Icon HTML.
 	 */
-	function icon( $atts ) {
+	function republitheme_icon( $atts ) {
 		extract( shortcode_atts( array(
 			'type' => 'thumbs-up'
 		), $atts ) );
@@ -173,7 +173,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Well HTML.
 	 */
-	function well( $atts, $content = null ) {
+	function republitheme_well( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'size' => false
 		), $atts ) );
@@ -194,7 +194,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Table HTML.
 	 */
-	function table( $atts, $content = null ) {
+	function republitheme_table( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'   => false,
 			'border' => false,
@@ -240,7 +240,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Row HTML.
 	 */
-	function row( $atts, $content = null ) {
+	function republitheme_row( $atts, $content = null ) {
 		return '<div class="row">' . str_replace( 'div><br />', 'div>', do_shortcode( $content ) ) . '</div>';
 	}
 
@@ -252,7 +252,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Col HTML.
 	 */
-	function col( $atts, $content = null ) {
+	function republitheme_col( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'class' => false
 		), $atts ) );
@@ -274,7 +274,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Progress HTML.
 	 */
-	function progress( $atts, $content = null ) {
+	function republitheme_progress( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'  => false,
 			'class' => false,
@@ -307,7 +307,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Panel HTML.
 	 */
-	function panel( $atts, $content = null ) {
+	function republitheme_panel( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'type'  => 'default'
 		), $atts ) );
@@ -323,7 +323,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Panel Heading HTML.
 	 */
-	function panel_heading( $atts, $content = null ) {
+	function republitheme_panel_heading( $atts, $content = null ) {
 		return '<div class="panel-heading">' . do_shortcode( $content ) . '</div>';
 	}
 
@@ -335,7 +335,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Panel Body HTML.
 	 */
-	function panel_body( $atts, $content = null ) {
+	function republitheme_panel_body( $atts, $content = null ) {
 		return '<div class="panel-body">' . do_shortcode( $content ) . '</div>';
 	}
 
@@ -347,7 +347,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Panel Footer HTML.
 	 */
-	function panel_footer( $atts, $content = null ) {
+	function republitheme_panel_footer( $atts, $content = null ) {
 		return '<div class="panel-footer">' . do_shortcode( $content ) . '</div>';
 	}
 
@@ -359,7 +359,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tabs HTML.
 	 */
-	function tabs( $atts, $content = null ) {
+	function republitheme_tabs( $atts, $content = null ) {
 		return '<ul class="nav nav-tabs odin-tabs">' . str_replace( '<br />', '', do_shortcode( $content ) ) . '</ul>';
 	}
 
@@ -371,7 +371,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tab HTML.
 	 */
-	function tab( $atts, $content = null ) {
+	function republitheme_tab( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'id'     => '',
 			'active' => false
@@ -396,7 +396,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tab Dropdown HTML.
 	 */
-	function tab_dropdown( $atts, $content = null ) {
+	function republitheme_tab_dropdown( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'title' => '',
 		), $atts ) );
@@ -424,7 +424,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tabs Contents HTML.
 	 */
-	function tab_contents( $atts, $content = null ) {
+	function republitheme_tab_contents( $atts, $content = null ) {
 		return '<div class="tab-content">' . str_replace( '<br />', '', do_shortcode( $content ) ) . '</div>';
 	}
 
@@ -436,7 +436,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tabs Content HTML.
 	 */
-	function tab_content( $atts, $content = null ) {
+	function republitheme_tab_content( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'id' => '',
 			'active' => false,
@@ -459,7 +459,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Accordions HTML.
 	 */
-	function accordions( $atts, $content = null ) {
+	function republitheme_accordions( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'id' => 'odin-accordion',
 		), $atts ) );
@@ -479,7 +479,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Accordion HTML.
 	 */
-	function accordion( $atts, $content = null ) {
+	function republitheme_accordion( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'id'     => 'odin-accordion',
 			'title'  => '',
@@ -514,7 +514,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Tooltip HTML.
 	 */
-	function tooltip( $atts, $content = null ) {
+	function republitheme_tooltip( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'title'     => '',
 			'link'      => '#',
@@ -536,7 +536,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Google Maps HTML.
 	 */
-	function map( $atts, $content = null ) {
+	function republitheme_map( $atts, $content = null ) {
 		extract( shortcode_atts( array(
 			'id'                => 'odin_map',
 			'latitude'          => '0',
@@ -667,7 +667,7 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          QR Code HTML.
 	 */
-	function qrcode( $atts ) {
+	function republitheme_qrcode( $atts ) {
 		extract( shortcode_atts( array(
 			'data'  => '',
 			'size'  => '150x150',
@@ -686,10 +686,10 @@ class Odin_Shortcodes {
 	 *
 	 * @return string          Clear Float HTML.
 	 */
-	function clear( $atts ) {
+	function republitheme_clear( $atts ) {
 		return '<br class="clear" />';
 	}
 
 }
 
-new Odin_Shortcodes;
+new Republitheme_Shortcodes;
