@@ -10,7 +10,7 @@
  * @version  2.1.4
  */
 class Republitheme_Shortcodes {
-
+ 
 	/**
 	 * Construct Post Type.
 	 */
