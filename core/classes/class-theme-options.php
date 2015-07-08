@@ -38,9 +38,9 @@ class Republitheme_Theme_Options {
 		$this->capability = $capability;
 
 		// Actions.
-		add_action( 'admin_menu', array( &$this, 'add_page' ) );
-		add_action( 'admin_init', array( &$this, 'create_settings' ) );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'scripts' ) );
+		add_action( 'admin_menu', array( &$this, 'republitheme_add_page' ) );
+		add_action( 'admin_init', array( &$this, 'republitheme_create_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'republitheme_scripts' ) );
 	}
 
 	/**
@@ -48,13 +48,13 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return void
 	 */
-	public function add_page() {
+	public function republitheme_add_page() {
 		add_menu_page(
 			$this->title,
 			$this->title,
 			$this->capability,
 			$this->id,
-			array( &$this, 'settings_page' )
+			array( &$this, 'republitheme_settings_page' )
 		);
 	}
 
@@ -63,7 +63,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return void
 	 */
-	function scripts() {
+	function republitheme_scripts() {
 		// Checks if is the settings page.
 		if ( isset( $_GET['page'] ) && $this->id == $_GET['page'] ) {
 
@@ -101,7 +101,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @param array $tabs Settings tabs.
 	 */
-	public function set_tabs( $tabs ) {
+	public function republitheme_set_tabs( $tabs ) {
 		$this->tabs = $tabs;
 	}
 
@@ -110,7 +110,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @param array $fields Settings fields.
 	 */
-	public function set_fields( $fields ) {
+	public function republitheme_set_fields( $fields ) {
 		$this->fields = $fields;
 	}
 
@@ -119,7 +119,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Current tab ID.
 	 */
-	protected function get_current_tab() {
+	protected function republitheme_get_current_tab() {
 		if ( isset( $_GET['tab'] ) ) {
 			$current_tab = $_GET['tab'];
 		} else {
@@ -134,7 +134,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Current URL.
 	 */
-	private function get_current_url() {
+	private function republitheme_get_current_url() {
 		$url = 'http';
 		if ( isset( $_SERVER['HTTPS'] ) && 'on' == $_SERVER['HTTPS'] ) {
 			$url .= 's';
@@ -158,7 +158,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string              Tab Navigation.
 	 */
-	protected function get_navigation( $current_tab ) {
+	protected function republitheme_get_navigation( $current_tab ) {
 
 		$html = '<h2 class="nav-tab-wrapper">';
 
@@ -179,15 +179,15 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return void
 	 */
-	public function settings_page() {
+	public function republitheme_settings_page() {
 		// Get current tag.
-		$current_tab = $this->get_current_tab();
+		$current_tab = $this->republitheme_get_current_tab();
 
 		// Opens the wrap.
 		echo '<div class="wrap">';
 
 			// Display the navigation menu.
-			$this->get_navigation( $current_tab );
+			$this->republitheme_get_navigation( $current_tab );
 
 			// Display erros.
 			settings_errors();
@@ -222,7 +222,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return void
 	 */
-	public function create_settings() {
+	public function republitheme_create_settings() {
 
 		// Register settings fields.
 		foreach ( $this->fields as $section => $items ) {
@@ -252,7 +252,7 @@ class Republitheme_Theme_Options {
 				add_settings_field(
 					$option['id'],
 					$option['label'],
-					array( &$this, 'callback_' . $type ),
+					array( &$this, 'republitheme_callback_' . $type ),
 					$items['tab'],
 					$section,
 					$args
@@ -262,7 +262,7 @@ class Republitheme_Theme_Options {
 
 		// Register settings.
 		foreach ( $this->tabs as $tabs ) {
-			register_setting( $tabs['id'], $tabs['id'], array( &$this, 'validate_input' ) );
+			register_setting( $tabs['id'], $tabs['id'], array( &$this, 'republitheme_validate_input' ) );
 		}
 	}
 
@@ -275,7 +275,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return array           Item options.
 	 */
-	protected function get_option( $tab, $id, $default = '' ) {
+	protected function republitheme_get_option( $tab, $id, $default = '' ) {
 		$options = get_option( $tab );
 
 		if ( isset( $options[ $id ] ) ) {
@@ -293,7 +293,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string       Attributes as string.
 	 */
-	protected function build_field_attributes( $attrs ) {
+	protected function republitheme_build_field_attributes( $attrs ) {
 		$attributes = '';
 
 		if ( ! empty( $attrs ) ) {
@@ -312,7 +312,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Input field HTML.
 	 */
-	public function callback_input( $args ) {
+	public function republitheme_callback_input( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
@@ -323,9 +323,9 @@ class Republitheme_Theme_Options {
 		}
 
 		// Sets current option.
-		$current = esc_html( $this->get_option( $tab, $id, $args['default'] ) );
+		$current = esc_html( $this->republitheme_get_option( $tab, $id, $args['default'] ) );
 
-		$html = sprintf( '<input id="%1$s" name="%2$s[%1$s]" value="%3$s"%4$s />', $id, $tab, $current, $this->build_field_attributes( $attrs ) );
+		$html = sprintf( '<input id="%1$s" name="%2$s[%1$s]" value="%3$s"%4$s />', $id, $tab, $current, $this->republitheme_build_field_attributes( $attrs ) );
 
 		// Displays the description.
 		if ( $args['description'] ) {
@@ -342,11 +342,11 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Text field HTML.
 	 */
-	public function callback_text( $args ) {
+	public function republitheme_callback_text( $args ) {
 		// Sets regular text class.
 		$args['attributes']['class'] = 'regular-text';
 
-		$this->callback_input( $args );
+		$this->republitheme_callback_input( $args );
 	}
 
 	/**
@@ -356,7 +356,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Textarea field HTML.
 	 */
-	public function callback_textarea( $args ) {
+	public function republitheme_callback_textarea( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
@@ -370,9 +370,9 @@ class Republitheme_Theme_Options {
 		}
 
 		// Sets current option.
-		$current = esc_textarea( $this->get_option( $tab, $id, $args['default'] ) );
+		$current = esc_textarea( $this->republitheme_get_option( $tab, $id, $args['default'] ) );
 
-		$html = sprintf( '<textarea id="%1$s" name="%2$s[%1$s]"%4$s>%3$s</textarea>', $id, $tab, $current, $this->build_field_attributes( $attrs ) );
+		$html = sprintf( '<textarea id="%1$s" name="%2$s[%1$s]"%4$s>%3$s</textarea>', $id, $tab, $current, $this->republitheme_build_field_attributes( $attrs ) );
 
 		// Displays the description.
 		if ( $args['description'] ) {
@@ -389,13 +389,13 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Editor field HTML.
 	 */
-	public function callback_editor( $args ) {
+	public function republitheme_callback_editor( $args ) {
 		$tab     = $args['tab'];
 		$id      = $args['id'];
 		$options = $args['options'];
 
 		// Sets current option.
-		$current = wpautop( $this->get_option( $tab, $id, $args['default'] ) );
+		$current = wpautop( $this->republitheme_get_option( $tab, $id, $args['default'] ) );
 
 		// Set default options.
 		if ( empty( $options ) ) {
@@ -423,15 +423,15 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Checkbox field HTML.
 	 */
-	public function callback_checkbox( $args ) {
+	public function republitheme_callback_checkbox( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
 
 		// Sets current option.
-		$current = $this->get_option( $tab, $id, $args['default'] );
+		$current = $this->republitheme_get_option( $tab, $id, $args['default'] );
 
-		$html = sprintf( '<input type="checkbox" id="%1$s" name="%2$s[%1$s]" value="1"%3$s%4$s />', $id, $tab, checked( 1, $current, false ), $this->build_field_attributes( $attrs ) );
+		$html = sprintf( '<input type="checkbox" id="%1$s" name="%2$s[%1$s]" value="1"%3$s%4$s />', $id, $tab, checked( 1, $current, false ), $this->republitheme_build_field_attributes( $attrs ) );
 
 		// Displays the description.
 		if ( $args['description'] ) {
@@ -448,20 +448,20 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Radio field HTML.
 	 */
-	public function callback_radio( $args ) {
+	public function republitheme_callback_radio( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
 
 		// Sets current option.
-		$current = $this->get_option( $tab, $id, $args['default'] );
+		$current = $this->republitheme_get_option( $tab, $id, $args['default'] );
 
 		$html = '';
 		foreach( $args['options'] as $key => $label ) {
 			$item_id = $id . '_' . $key;
 			$key = sanitize_title( $key );
 
-			$html .= sprintf( '<input type="radio" id="%1$s_%3$s" name="%2$s[%1$s]" value="%3$s"%4$s%5$s />', $id, $tab, $key, checked( $current, $key, false ), $this->build_field_attributes( $attrs ) );
+			$html .= sprintf( '<input type="radio" id="%1$s_%3$s" name="%2$s[%1$s]" value="%3$s"%4$s%5$s />', $id, $tab, $key, checked( $current, $key, false ), $this->republitheme_build_field_attributes( $attrs ) );
 			$html .= sprintf( '<label for="%s"> %s</label><br />', $item_id, $label );
 		}
 
@@ -480,18 +480,18 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Select field HTML.
 	 */
-	public function callback_select( $args ) {
+	public function republitheme_callback_select( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
 
 		// Sets current option.
-		$current = $this->get_option( $tab, $id, $args['default'] );
+		$current = $this->republitheme_get_option( $tab, $id, $args['default'] );
 
 		// If multiple add a array in the option.
 		$multiple = ( in_array( 'multiple', $attrs ) ) ? '[]' : '';
 
-		$html = sprintf( '<select id="%1$s" name="%2$s[%1$s]%3$s"%4$s>', $id, $tab, $multiple, $this->build_field_attributes( $attrs ) );
+		$html = sprintf( '<select id="%1$s" name="%2$s[%1$s]%3$s"%4$s>', $id, $tab, $multiple, $this->republitheme_build_field_attributes( $attrs ) );
 		foreach( $args['options'] as $key => $label ) {
 			$key = sanitize_title( $key );
 
@@ -514,11 +514,11 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Color field HTML.
 	 */
-	public function callback_color( $args ) {
+	public function republitheme_callback_color( $args ) {
 		// Sets color class.
 		$args['attributes']['class'] = 'odin-color-field';
 
-		$this->callback_input( $args );
+		$this->republitheme_callback_input( $args );
 	}
 
 	/**
@@ -528,15 +528,15 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Upload field HTML.
 	 */
-	public function callback_upload( $args ) {
+	public function republitheme_callback_upload( $args ) {
 		$tab   = $args['tab'];
 		$id    = $args['id'];
 		$attrs = $args['attributes'];
 
 		// Sets current option.
-		$current = esc_url( $this->get_option( $tab, $id, $args['default'] ) );
+		$current = esc_url( $this->republitheme_get_option( $tab, $id, $args['default'] ) );
 
-		$html = sprintf( '<input type="text" id="%1$s" name="%2$s[%1$s]" value="%3$s" class="regular-text"%5$s /> <input class="button odin-upload-button" id="%1$s-button" type="button" value="%4$s" />', $id, $tab, $current, __( 'Select file', 'odin' ), $this->build_field_attributes( $attrs ) );
+		$html = sprintf( '<input type="text" id="%1$s" name="%2$s[%1$s]" value="%3$s" class="regular-text"%5$s /> <input class="button odin-upload-button" id="%1$s-button" type="button" value="%4$s" />', $id, $tab, $current, __( 'Select file', 'odin' ), $this->republitheme_build_field_attributes( $attrs ) );
 
 		// Displays the description.
 		if ( $args['description'] ) {
@@ -553,12 +553,12 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Image field HTML.
 	 */
-	public function callback_image( $args ) {
+	public function republitheme_callback_image( $args ) {
 		$tab = $args['tab'];
 		$id  = $args['id'];
 
 		// Sets current option.
-		$current = $this->get_option( $tab, $id, $args['default'] );
+		$current = $this->republitheme_get_option( $tab, $id, $args['default'] );
 
 		// Gets placeholder image.
 		$image = get_template_directory_uri() . '/core/assets/images/placeholder.png';
@@ -590,12 +590,12 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string Image Plupload field HTML.
 	 */
-	public function callback_image_plupload( $args ) {
+	public function republitheme_callback_image_plupload( $args ) {
 		$tab = $args['tab'];
 		$id  = $args['id'];
 
 		// Sets current option.
-		$current = $this->get_option( $tab, $id, $args['default'] );
+		$current = $this->republitheme_get_option( $tab, $id, $args['default'] );
 
 		$html = '<div class="odin-gallery-container">';
 			$html .= '<ul class="odin-gallery-images">';
@@ -637,7 +637,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string HTML.
 	 */
-	public function callback_html( $args ) {
+	public function republitheme_callback_html( $args ) {
 		echo $args['description'];
 	}
 
@@ -648,7 +648,7 @@ class Republitheme_Theme_Options {
 	 *
 	 * @return string        The collection of sanitized values.
 	 */
-	public function validate_input( $input ) {
+	public function republitheme_validate_input( $input ) {
 
 		// Create our array for storing the validated options.
 		$output = array();

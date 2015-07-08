@@ -7,7 +7,7 @@ function republitheme_options() {
         'manage_options' // Page capability 
     );
 
-    $republitheme_settings->set_tabs(
+    $republitheme_settings->republitheme_set_tabs(
         array(
             array(
                 'id' => 'republitheme_general', // Slug/ID of the Settings tab 
@@ -28,7 +28,7 @@ function republitheme_options() {
         )
     );
 
-    $republitheme_settings->set_fields(
+    $republitheme_settings->republitheme_set_fields(
         array(
             // Configuration tab
             'republitheme_general_fields_section' => array( // Slug/ID of the section 
